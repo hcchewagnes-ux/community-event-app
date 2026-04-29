@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommuniHub | Event Discovery & RSVP</title>
+    <meta name="description" content="A centralized hub for discovery, joining, and managing community events. No more WhatsApp chaos.">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo" id="logo">CommuniHub</div>
+            <div class="nav-actions">
+                <button class="btn btn-glass" id="toggle-dashboard">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main View (Event Listing) -->
+        <main id="main-view">
+            <section class="hero">
+                <h1>Find your next <span style="color: var(--primary-light)">Community</span> moment.</h1>
+                <p>Join local meetups, workshops, and gatherings. Real-time availability, zero fragmentation.</p>
+                <div class="search-bar">
+                    <input type="text" id="event-search" placeholder="Search events by title or category...">
+                </div>
+            </section>
+
+            <div class="event-grid" id="event-grid">
+                <!-- Events will be rendered here via JS -->
+            </div>
+
+            <!-- Problem Understanding Section (Case Study Requirement) -->
+            <section class="about-section">
+                <div class="about-card">
+                    <h3>Why CommuniHub?</h3>
+                    <div class="problem-grid">
+                        <div class="problem-item">
+                            <i data-lucide="message-square"></i>
+                            <p>No more WhatsApp group chaos</p>
+                        </div>
+                        <div class="problem-item">
+                            <i data-lucide="calendar"></i>
+                            <p>Centralized community event hub</p>
+                        </div>
+                        <div class="problem-item">
+                            <i data-lucide="check-circle"></i>
+                            <p>Automated RSVP tracking</p>
+                        </div>
+                        <div class="problem-item">
+                            <i data-lucide="zap"></i>
+                            <p>Real-time seat availability</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Organizer Dashboard -->
+        <section id="dashboard-view" class="dashboard-view">
+            <div class="dashboard-header">
+                <h2>Organizer Dashboard</h2>
+                <button class="btn btn-primary" id="open-create-modal">
+                    <i data-lucide="plus"></i>
+                    Create Event
+                </button>
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th>Capacity</th>
+                            <th>RSVPs</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashboard-table-body">
+                        <!-- Dashboard rows will be rendered here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- Create/Edit Event Modal -->
+    <div class="modal-overlay" id="event-modal">
+        <div class="modal">
+            <div class="modal-close" id="close-modal">
+                <i data-lucide="x"></i>
+            </div>
+            <h2 id="modal-title" style="margin-bottom: 1.5rem;">Create New Event</h2>
+            <form id="event-form">
+                <div class="form-group">
+                    <label>Event Title</label>
+                    <input type="text" id="f-title" placeholder="e.g. Weekend Yoga in the Park" required>
+                </div>
+                <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <label>Date</label>
+                        <input type="date" id="f-date" required>
+                    </div>
+                    <div>
+                        <label>Time (e.g. 08:00 – 10:00)</label>
+                        <input type="text" id="f-time" placeholder="08:00 – 10:00">
+                    </div>
+                </div>
+                <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <label>Location</label>
+                        <input type="text" id="f-location" placeholder="e.g. Bishan Park" required>
+                    </div>
+                    <div>
+                        <label>Capacity</label>
+                        <input type="number" id="f-capacity" placeholder="20" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" id="f-category" placeholder="e.g. Health, Education, Creative">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="f-description" rows="3" placeholder="What should attendees expect?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Image URL (optional)</label>
+                    <input type="url" id="f-image" placeholder="https://images.unsplash.com/...">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Save Event</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" style="position: fixed; bottom: 2rem; right: 2rem; z-index: 2000; display: flex; flex-direction: column; gap: 0.5rem;"></div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Initialize icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
